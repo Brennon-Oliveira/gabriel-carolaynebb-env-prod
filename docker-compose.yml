@@ -1,0 +1,24 @@
+version: "3.7"
+services:
+    api:
+        build: './../gabriel-carolaynebb-api'
+        container_name: "gabriel-carolaynebb-api"
+        restart: "always"
+        volumes:
+            - ../gabriel-carolaynebb-api:/home/usr/api
+        ports:
+            - "7700:7700"
+        env_file:
+            - ./api.env
+        command: npm run dev
+    app:
+        build: './../gabriel-carolaynebb'
+        container_name: "gabriel-carolaynebb-app"
+        restart: "always"
+        volumes:
+            - ../gabriel-carolaynebb:/home/usr/app
+        ports:
+            - "3006:3006"
+        env_file:
+            - ./app.env
+        command: npm run start
